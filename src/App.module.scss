@@ -1,6 +1,8 @@
 @use './styles/breakpoints.scss' as *;
 
 .container {
+  display: flex;
+
   @include tablet {
     background-color: red;
   }

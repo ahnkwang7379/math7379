@@ -1,34 +1,39 @@
-import { useEffect } from 'react'
+import styles from './App.module.scss'
+import WorksheetBuilderProvider from './contexts/WorksheetBuilderProvider'
+import SimilarityProblems from './components/SimilarityProblems'
+import WorkSheet from './components/WorkSheet'
 import useApiHandler from './hooks/useApiHandler'
 import { ProblemsService } from './services/problems.service'
-import Typography from './components/Typography'
-import styles from './App.module.scss'
+import { useEffect } from 'react'
 
 function App() {
-  const { execute, data } = useApiHandler(ProblemsService.getProblems, {
-    onSuccess: (data) => {
-      console.log(data)
-    },
-    onError: (error) => {
-      console.log(error)
-    },
-  })
+  const {
+    execute: getProblems,
+    data: problems,
+    isIdle,
+    isPending,
+    isError,
+  } = useApiHandler(ProblemsService.getProblems)
 
   useEffect(() => {
-    execute()
+    // 문제 불러오기
+    getProblems()
   }, [])
 
-  useEffect(() => {
-    if (data) {
-      console.log(data)
-    }
-  }, [data])
+  // 로딩중 처리
+  if (isIdle || isPending) return <div>TODO: 로딩처리</div>
+
+  if (isError) return <div>TODO: 에러처리</div>
+
   return (
-    <div className={styles.container}>
-      <Typography variant="body1" color="red-500" weight="bold">
-        Hello World
-      </Typography>
-    </div>
+    <WorksheetBuilderProvider problems={problems || []}>
+      <article className={styles.container}>
+        {/* 유사문항 */}
+        <SimilarityProblems />
+        {/* 학습지 상세 편집 */}
+        <WorkSheet />
+      </article>
+    </WorksheetBuilderProvider>
   )
 }
 

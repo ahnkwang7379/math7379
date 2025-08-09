@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import sleep from '../utils/sleep'
 
 type FetchState = 'idle' | 'pending' | 'success' | 'error'
 
@@ -37,6 +38,7 @@ function useApiHandler<T, Params = void>(
     setError(null)
 
     try {
+      await sleep(3000)
       const response = await fetchFn(params as Params)
       setData(response || null)
       setStatus('success')
