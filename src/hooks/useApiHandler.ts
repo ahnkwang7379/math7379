@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import sleep from '../utils/sleep'
+import { useCallback, useState } from 'react'
 
 type FetchState = 'idle' | 'pending' | 'success' | 'error'
 
@@ -33,34 +32,43 @@ function useApiHandler<T, Params = void>(
   const [error, setError] = useState<Error | null>(null)
   const [status, setStatus] = useState<FetchState>('idle')
 
-  const execute = async (params: Params) => {
-    setStatus('pending')
-    setError(null)
+  const execute = useCallback(
+    async (params: Params) => {
+      setStatus('pending')
+      setError(null)
 
-    try {
-      // 로딩 테스트
-      await sleep(3000)
-      const response = await fetchFn(params as Params)
-      setData(response || null)
-      setStatus('success')
-      if (response) {
-        onSuccess?.(response)
+      try {
+        const response = await fetchFn(params as Params)
+        setData(response || null)
+        setStatus('success')
+        if (response) {
+          onSuccess?.(response)
+        }
+      } catch (err) {
+        console.error(err)
+        const errorObj = err instanceof Error ? err : new Error('에러 발생')
+        setStatus('error')
+        setError(errorObj)
+        onError?.(errorObj)
       }
-    } catch (err) {
-      console.error(err)
-      const errorObj = err instanceof Error ? err : new Error('에러 발생')
-      setError(errorObj)
-      onError?.(errorObj)
-    }
-  }
+    },
+    [fetchFn, onSuccess, onError],
+  )
 
   const isIdle = status === 'idle'
   const isPending = status === 'pending'
   const isSuccess = status === 'success'
   const isError = status === 'error'
 
+  const reset = useCallback(() => {
+    setData(null)
+    setError(null)
+    setStatus('idle')
+  }, [])
+
   return {
     execute,
+    reset,
     data,
     error,
     status,

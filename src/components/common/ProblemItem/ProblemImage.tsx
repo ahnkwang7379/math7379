@@ -38,12 +38,16 @@ export default function ProblemImage({
   }
 
   return (
-    <img
-      src={imageError ? fallbackImageSrc : problemImageUrl}
-      alt={imageError ? '이미지를 불러올 수 없습니다' : `${title}-문제 이미지`}
-      loading="lazy"
-      className={styles.problemImage}
-      onError={handleImageError}
-    />
+    <figure className={styles.imageContainer}>
+      <img
+        src={imageError ? fallbackImageSrc : problemImageUrl}
+        alt={
+          imageError ? '이미지를 불러올 수 없습니다' : `${title}-문제 이미지`
+        }
+        loading="lazy"
+        className={styles.problemImage}
+        onError={handleImageError}
+      />
+    </figure>
   )
 }

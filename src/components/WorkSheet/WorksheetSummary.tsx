@@ -41,15 +41,19 @@ export default function WorksheetSummary() {
           `${formatProblemLevel(Number(level) as ProblemLevel)} ${count}`,
       )
 
-    return statsArray.length > 0 ? statsArray.join(' • ') : ''
+    return statsArray.length > 0 ? statsArray.join(' • ') + ' |' : ''
   }, [levelStatistics, totalProblemCount])
 
   return (
     <section className={styles.worksheetSummary}>
       <Typography variant="body1" color="gray-400">
-        {levelStatsText} |
+        {levelStatsText}
       </Typography>
-      <Typography variant="body1" weight="bold" color="white">
+      <Typography
+        variant="body1"
+        weight="bold"
+        color={totalProblemCount === 0 ? 'red-500' : 'white'}
+      >
         문제 수 {totalProblemCount}개
       </Typography>
     </section>

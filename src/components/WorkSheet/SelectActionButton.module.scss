@@ -1,0 +1,21 @@
+.selectActionButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.selectActionButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.selectActionContainer {
+  display: flex;
+  gap: 4px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}

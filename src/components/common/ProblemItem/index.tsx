@@ -12,7 +12,7 @@ export type ProblemProps = Problem & {
  * @description
  * 문제 컴포넌트
  */
-export default function Problem({
+export default function ProblemItem({
   problemIndex,
   level,
   type,

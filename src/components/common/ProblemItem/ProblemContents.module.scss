@@ -4,6 +4,7 @@
   max-width: 100%;
   overflow: hidden; /* 넘치는 내용 숨김 */
   box-sizing: border-box; /* 패딩 포함한 크기 계산 */
+  min-width: 0; /* flex 축소 허용 */
 
   background-color: var(--color-white);
 
@@ -20,6 +21,8 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 60px; /* 메타 정보 최소 너비 확보 */
+  flex-shrink: 0; /* 축소 방지 */
 }
 
 .metaTag {

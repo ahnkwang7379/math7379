@@ -1,5 +1,5 @@
 import type { ProblemProps } from './index.tsx'
-import Typography from '../Typography'
+import Typography from '../Typography/index.tsx'
 import styles from './ProblemHeader.module.scss'
 
 type ProblemHeaderProps = Pick<
@@ -20,12 +20,19 @@ export default function ProblemHeader({
       </Typography>
 
       {/* 타이틀 */}
-      <Typography variant="body2" color="gray-900" className={styles.title}>
+      <Typography
+        variant="body2"
+        color="gray-900"
+        className={styles.title}
+        title={title}
+      >
         {title}
       </Typography>
 
-      {/* 버튼 2종 */}
-      {actionButtonList}
+      {/* 액션버튼 */}
+      {actionButtonList.length > 0 && (
+        <div className={styles.actionButtonList}>{actionButtonList}</div>
+      )}
     </section>
   )
 }

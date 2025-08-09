@@ -4,6 +4,7 @@ import {
   type ElementType,
   type PropsWithChildren,
   type CSSProperties,
+  type HTMLAttributes,
 } from 'react'
 import styles from './Typography.module.scss'
 
@@ -23,12 +24,11 @@ export type ColorToken =
   | 'gray-800'
   | 'gray-900'
 
-interface TypographyProps {
-  variant: 'body1' | 'body2' | 'h4' | 'caption1'
+interface TypographyProps extends Omit<HTMLAttributes<HTMLElement>, 'style'> {
+  variant: 'body1' | 'body2' | 'h4' | 'caption1' | 'caption2'
   weight?: 'regular' | 'medium' | 'bold'
   as?: ElementType
   color?: ColorToken
-  className?: string
 }
 
 /**
@@ -42,6 +42,7 @@ export default function Typography({
   weight,
   color,
   className,
+  ...htmlProps
 }: PropsWithChildren<TypographyProps>) {
   const styleClassList = clsx(
     styles[variant],
@@ -53,5 +54,13 @@ export default function Typography({
     ? { color: `var(--color-${color})` }
     : undefined
 
-  return createElement(Tag, { className: styleClassList, style }, children)
+  return createElement(
+    Tag,
+    {
+      className: styleClassList,
+      style,
+      ...htmlProps,
+    },
+    children,
+  )
 }

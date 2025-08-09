@@ -1,0 +1,55 @@
+.errorContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  gap: 16px;
+}
+
+.errorIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-red-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.errorIconText {
+  color: var(--color-white);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.errorContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 300px;
+}
+
+.refreshButton {
+  background-color: var(--color-teal-500);
+  color: var(--color-white);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 8px;
+}
+
+.refreshButton:hover {
+  background-color: #4aa89b; /* teal-500의 hover 상태 */
+}
+
+.refreshButton:active {
+  transform: translateY(1px);
+}

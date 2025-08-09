@@ -24,7 +24,9 @@ class ApiClient implements IApiClient {
 
     return Object.entries(query).map(([key, value]) => {
       if (Array.isArray(value))
-        return value.map((v) => `${key}=${encodeURIComponent(v)}`).join('&')
+        return `${encodeURIComponent(key)}=${value
+          .map((v) => encodeURIComponent(v))
+          .join(',')}`
       return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
     })
   }
