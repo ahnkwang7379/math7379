@@ -1,0 +1,7 @@
+@use './styles/breakpoints.scss' as *;
+
+.container {
+  @include tablet {
+    background-color: red;
+  }
+}

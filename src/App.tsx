@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import useApiHandler from './hooks/useApiHandler'
 import { ProblemsService } from './services/problems.service'
+import Typography from './components/Typography'
+import styles from './App.module.scss'
 
 function App() {
   const { execute, data } = useApiHandler(ProblemsService.getProblems, {
@@ -22,9 +24,11 @@ function App() {
     }
   }, [data])
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+    <div className={styles.container}>
+      <Typography variant="body1" color="red-500" weight="bold">
+        Hello World
+      </Typography>
+    </div>
   )
 }
 
