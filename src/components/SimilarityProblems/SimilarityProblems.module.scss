@@ -1,0 +1,22 @@
+.similarityProblems {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  background-color: var(--color-gray-500);
+  border-radius: 12px;
+
+  @include tablet {
+    width: 480px;
+    max-width: 480px;
+    flex-shrink: 0;
+  }
+
+  @include desktop {
+    width: 504px;
+    max-width: 504px;
+    flex-shrink: 0;
+  }
+}

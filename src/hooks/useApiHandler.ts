@@ -38,6 +38,7 @@ function useApiHandler<T, Params = void>(
     setError(null)
 
     try {
+      // 로딩 테스트
       await sleep(3000)
       const response = await fetchFn(params as Params)
       setData(response || null)

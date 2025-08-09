@@ -1,0 +1,33 @@
+.problemContents {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden; /* 넘치는 내용 숨김 */
+  box-sizing: border-box; /* 패딩 포함한 크기 계산 */
+
+  background-color: var(--color-white);
+
+  gap: 22px;
+  padding: 24px 16px;
+
+  @include desktop {
+    gap: 15px;
+    padding: 16px;
+  }
+}
+
+.metaInfoList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metaTag {
+  width: 40px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-gray-200);
+  border-radius: 4px;
+}

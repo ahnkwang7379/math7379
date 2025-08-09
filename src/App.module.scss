@@ -1,9 +1,21 @@
-@use './styles/breakpoints.scss' as *;
+.app {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  padding: 14px 0px;
+  box-sizing: border-box;
+  background-color: var(--color-gray-200);
+
+  @include tablet {
+    padding: 14px 20px;
+  }
+}
 
 .container {
   display: flex;
-
-  @include tablet {
-    background-color: red;
-  }
+  width: 100%;
+  max-width: 1240px;
+  height: 100%;
+  gap: 16px;
 }

@@ -16,12 +16,32 @@ $colors: (
     300: #00abff,
   ),
   gray: (
+    100: #fafafa,
+    200: #f5f5f5,
+    400: #d1d5db,
+    500: #e5e5e5,
     600: #959595,
     700: #707070,
     800: #5c5c5c,
     900: #333333,
   ),
 );
+
+$bp-tablet: 1024px;
+$bp-desktop: 1280px;
+
+// 믹스인
+@mixin tablet {
+  @media (min-width: #{$bp-tablet}) and (max-width: #{$bp-desktop - 1}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$bp-desktop}) {
+    @content;
+  }
+}
 
 // 변수
 :root {
@@ -30,16 +50,15 @@ $colors: (
   --color-yellow-500: #{map.get(map.get($colors, yellow), 500)};
   --color-red-500: #{map.get(map.get($colors, red), 500)};
   --color-blue-300: #{map.get(map.get($colors, blue), 300)};
+  --color-gray-100: #{map.get(map.get($colors, gray), 100)};
+  --color-gray-200: #{map.get(map.get($colors, gray), 200)};
+  --color-gray-400: #{map.get(map.get($colors, gray), 400)};
+  --color-gray-500: #{map.get(map.get($colors, gray), 500)};
   --color-gray-600: #{map.get(map.get($colors, gray), 600)};
   --color-gray-700: #{map.get(map.get($colors, gray), 700)};
   --color-gray-800: #{map.get(map.get($colors, gray), 800)};
   --color-gray-900: #{map.get(map.get($colors, gray), 900)};
-}
 
-// 헬퍼 함수: SCSS 단계에서 색상 값 가져오기
-@function color-token($family, $shade: null) {
-  @if $shade == null {
-    @return map.get($colors, $family);
-  }
-  @return map.get(map.get($colors, $family), $shade);
+  --bp-tablet: #{$bp-tablet};
+  --bp-desktop: #{$bp-desktop};
 }

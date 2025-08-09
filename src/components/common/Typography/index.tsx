@@ -8,12 +8,16 @@ import {
 import styles from './Typography.module.scss'
 
 // 규모가 작으니 지금은 그냥 토큰에 있는 컬러만 허용
-type ColorToken =
+export type ColorToken =
   | 'white'
   | 'teal-500'
   | 'yellow-500'
   | 'red-500'
   | 'blue-300'
+  | 'gray-100'
+  | 'gray-200'
+  | 'gray-400'
+  | 'gray-500'
   | 'gray-600'
   | 'gray-700'
   | 'gray-800'

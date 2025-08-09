@@ -1,3 +1,7 @@
+import styles from './SimilarityProblems.module.scss'
+
 export default function SimilarityProblems() {
-  return <div>SimilarityProblems</div>
+  return (
+    <section className={styles.similarityProblems}>SimilarityProblems</section>
+  )
 }
