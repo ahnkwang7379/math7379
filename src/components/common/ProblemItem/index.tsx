@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import type { Problem } from '../../../models/problems'
 import styles from './Problem.module.scss'
 import ProblemHeader from './ProblemHeader'
@@ -5,21 +6,22 @@ import ProblemContents from './ProblemContents'
 
 export type ProblemProps = Problem & {
   problemIndex: number // 문제 인덱스 (id와 다른 실제 순번)
-  actionButtonList: React.ReactNode[] // 버튼 목록
+  actionType: 'similarity' | 'worksheet'
 }
 
 /**
  * @description
  * 문제 컴포넌트
  */
-export default function ProblemItem({
+function ProblemItem({
   problemIndex,
   level,
   type,
   problemImageUrl,
   title,
   answerRate,
-  actionButtonList,
+  actionType,
+  id,
 }: ProblemProps) {
   return (
     <article className={styles.problem}>
@@ -27,7 +29,8 @@ export default function ProblemItem({
       <ProblemHeader
         problemIndex={problemIndex}
         title={title}
-        actionButtonList={actionButtonList}
+        actionType={actionType}
+        id={id}
       />
 
       {/* 내용 */}
@@ -41,3 +44,5 @@ export default function ProblemItem({
     </article>
   )
 }
+
+export default memo(ProblemItem)

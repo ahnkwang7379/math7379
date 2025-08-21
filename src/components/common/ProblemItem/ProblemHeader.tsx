@@ -1,16 +1,19 @@
+import { memo } from 'react'
 import type { ProblemProps } from './index.tsx'
 import Typography from '../Typography/index.tsx'
 import styles from './ProblemHeader.module.scss'
+import ActionButtonList from './ActionButtonList'
 
 type ProblemHeaderProps = Pick<
   ProblemProps,
-  'problemIndex' | 'title' | 'actionButtonList'
+  'problemIndex' | 'title' | 'actionType' | 'id'
 >
 
-export default function ProblemHeader({
+function ProblemHeader({
   problemIndex,
   title,
-  actionButtonList,
+  actionType,
+  id,
 }: ProblemHeaderProps) {
   return (
     <section className={styles.problemHeader}>
@@ -30,9 +33,9 @@ export default function ProblemHeader({
       </Typography>
 
       {/* 액션버튼 */}
-      {actionButtonList.length > 0 && (
-        <div className={styles.actionButtonList}>{actionButtonList}</div>
-      )}
+      <ActionButtonList actionType={actionType} id={id} />
     </section>
   )
 }
+
+export default memo(ProblemHeader)

@@ -1,21 +1,21 @@
-import type { Problem } from '../../models/problems'
+import { memo } from 'react'
 import ProblemItem from '../common/ProblemItem'
 import styles from './SimilarityProblemsList.module.scss'
-import ChangeActionButton from './ChangeActionButton'
-import AddActionButton from './AddActionButton'
+import useWorksheetBuilderContext from '../../hooks/useWorksheetBuilderContext'
+import SimilarityProblemsNotice from './SimilarityProblemsNotice'
 
-type SimilarityProblemsListProps = {
-  similarityProblemList: Problem[]
-}
+function SimilarityProblemsList() {
+  const { similarityProblemList } = useWorksheetBuilderContext()
 
-export default function SimilarityProblemsList({
-  similarityProblemList,
-}: SimilarityProblemsListProps) {
+  if (similarityProblemList.length === 0) {
+    return <SimilarityProblemsNotice />
+  }
+
   return (
     <ul className={styles.similarityProblemsList}>
       {similarityProblemList.map(
         ({ id, level, type, problemImageUrl, title, answerRate }, index) => (
-          <li key={`${id}-${index}-problem`}>
+          <li key={id}>
             <ProblemItem
               id={id}
               level={level}
@@ -24,10 +24,7 @@ export default function SimilarityProblemsList({
               title={title}
               answerRate={answerRate}
               problemIndex={index}
-              actionButtonList={[
-                <ChangeActionButton key="change-action-button" id={id} />,
-                <AddActionButton key="add-action-button" id={id} />,
-              ]}
+              actionType="similarity"
             />
           </li>
         ),
@@ -35,3 +32,5 @@ export default function SimilarityProblemsList({
     </ul>
   )
 }
+
+export default memo(SimilarityProblemsList)

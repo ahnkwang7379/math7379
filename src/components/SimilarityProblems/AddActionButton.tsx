@@ -1,17 +1,20 @@
-import useWorksheetBuilderContext from '../../hooks/useWorksheetBuilderContext'
-import type { ProblemProps } from '../common/ProblemItem'
+import { memo } from 'react'
 import styles from './AddActionButton.module.scss'
 import addIcon from '../../assets/add-circle.svg'
 import Typography from '../common/Typography'
+import useWorksheetBuilderContext from '../../hooks/useWorksheetBuilderContext'
 
-type AddActionButtonProps = Pick<ProblemProps, 'id'>
+interface AddActionButtonProps {
+  id: number
+}
 
 /**
  * @description
  * 선택된 문제 뒤에 새 문제를 추가하는 버튼
  */
-export default function AddActionButton({ id }: AddActionButtonProps) {
+function AddActionButton({ id }: AddActionButtonProps) {
   const { addProblemToWorksheet } = useWorksheetBuilderContext()
+
   return (
     <button
       className={styles.addActionButton}
@@ -30,3 +33,5 @@ export default function AddActionButton({ id }: AddActionButtonProps) {
     </button>
   )
 }
+
+export default memo(AddActionButton)
