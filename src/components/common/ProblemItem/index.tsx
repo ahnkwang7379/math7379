@@ -5,7 +5,6 @@ import ProblemHeader from './ProblemHeader'
 import ProblemContents from './ProblemContents'
 
 export type ProblemProps = Problem & {
-  problemIndex: number // 문제 인덱스 (id와 다른 실제 순번)
   actionType: 'similarity' | 'worksheet'
 }
 
@@ -14,7 +13,6 @@ export type ProblemProps = Problem & {
  * 문제 컴포넌트
  */
 function ProblemItem({
-  problemIndex,
   level,
   type,
   problemImageUrl,
@@ -26,12 +24,7 @@ function ProblemItem({
   return (
     <article className={styles.problem}>
       {/* 헤더 */}
-      <ProblemHeader
-        problemIndex={problemIndex}
-        title={title}
-        actionType={actionType}
-        id={id}
-      />
+      <ProblemHeader title={title} actionType={actionType} id={id} />
 
       {/* 내용 */}
       <ProblemContents

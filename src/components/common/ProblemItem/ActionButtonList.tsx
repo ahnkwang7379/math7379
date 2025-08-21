@@ -9,6 +9,11 @@ interface ActionButtonListProps {
   id: number
 }
 
+/**
+ * @description
+ * 하위 액션 컴포넌트들이 context를 직접 구독해서
+ * 아이템 리스트 변경시 재렌더링이 일어날 곳
+ */
 export default function ActionButtonList({
   actionType,
   id,

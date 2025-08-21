@@ -14,8 +14,8 @@ function ProblemList() {
   return (
     <ul className={styles.problemList}>
       {worksheetProblemList.map(
-        ({ id, level, type, problemImageUrl, title, answerRate }, index) => (
-          <li key={id}>
+        ({ id, level, type, problemImageUrl, title, answerRate }) => (
+          <li key={id} className={styles.problemItem}>
             <ProblemItem
               id={id}
               level={level}
@@ -23,7 +23,6 @@ function ProblemList() {
               problemImageUrl={problemImageUrl}
               title={title}
               answerRate={answerRate}
-              problemIndex={index}
               actionType="worksheet"
             />
           </li>

@@ -5,4 +5,11 @@
   flex: 1;
   overflow-y: auto;
   min-height: 0;
+
+  counter-reset: problem-index;
+}
+
+.problemItem {
+  counter-increment: problem-index;
+  display: flex;
 }

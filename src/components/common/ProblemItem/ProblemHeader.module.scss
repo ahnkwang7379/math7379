@@ -12,6 +12,10 @@
   }
 }
 
+.index::before {
+  content: counter(problem-index);
+}
+
 .title {
   display: -webkit-box;
   -webkit-box-orient: vertical;

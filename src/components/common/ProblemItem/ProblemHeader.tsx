@@ -4,23 +4,18 @@ import Typography from '../Typography/index.tsx'
 import styles from './ProblemHeader.module.scss'
 import ActionButtonList from './ActionButtonList'
 
-type ProblemHeaderProps = Pick<
-  ProblemProps,
-  'problemIndex' | 'title' | 'actionType' | 'id'
->
+type ProblemHeaderProps = Pick<ProblemProps, 'title' | 'actionType' | 'id'>
 
-function ProblemHeader({
-  problemIndex,
-  title,
-  actionType,
-  id,
-}: ProblemHeaderProps) {
+function ProblemHeader({ title, actionType, id }: ProblemHeaderProps) {
   return (
     <section className={styles.problemHeader}>
       {/* 인덱스 */}
-      <Typography variant="h4" color="gray-900" weight="bold">
-        {problemIndex + 1}
-      </Typography>
+      <Typography
+        variant="h4"
+        color="gray-900"
+        weight="bold"
+        className={styles.index}
+      />
 
       {/* 타이틀 */}
       <Typography

@@ -14,8 +14,8 @@ function SimilarityProblemsList() {
   return (
     <ul className={styles.similarityProblemsList}>
       {similarityProblemList.map(
-        ({ id, level, type, problemImageUrl, title, answerRate }, index) => (
-          <li key={id}>
+        ({ id, level, type, problemImageUrl, title, answerRate }) => (
+          <li key={id} className={styles.problemItem}>
             <ProblemItem
               id={id}
               level={level}
@@ -23,7 +23,6 @@ function SimilarityProblemsList() {
               problemImageUrl={problemImageUrl}
               title={title}
               answerRate={answerRate}
-              problemIndex={index}
               actionType="similarity"
             />
           </li>
